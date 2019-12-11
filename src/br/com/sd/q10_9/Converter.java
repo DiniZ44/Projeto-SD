@@ -15,9 +15,12 @@ public class Converter {
     
 public static String incrementar(String msg) {
 		int numero = 0;
-		int inicio = msg.indexOf(" ");
-		String msgInc = msg.substring(0, inicio);
-		String msgNum = msg.substring(inicio);
+		int inicio = msg.indexOf(":");
+		String msgInc = msg.substring(0, inicio+1);
+		String msgNum = msg.substring(inicio+1);
+                
+                msgNum = msgNum.replace(" ", "");
+		msgNum = msgNum.trim();
 
 		if (msg.isEmpty())
 			throw new RuntimeException("Mensagem vázia");
