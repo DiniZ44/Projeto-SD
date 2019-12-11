@@ -5,7 +5,6 @@
  */
 package br.com.sd.q09;
 
-import br.com.sd.q08.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -29,7 +28,7 @@ public class Servidor {
 		this.clientes = new ArrayList<PrintStream>();
 	}
 
-	public void executarRecebeEnvia() throws IOException {
+	public void rodar() throws IOException {
 		ServerSocket servidor = new ServerSocket(this.porta);
 		System.out.println("Porta " + this.porta + " aberta!");
 
@@ -57,24 +56,23 @@ public class Servidor {
 		cliente1.close();
 	}
 
-	public String incrementar(String msg) {
+	public static String incrementar(String msg) {
 		int numero = 0;
 		int inicio = msg.indexOf(" ");
 		String msgInc = msg.substring(0, inicio);
 		String msgNum = msg.substring(inicio);
 
 		if (msg.isEmpty())
-			throw new RuntimeException("Mensagem vazia");
+			throw new RuntimeException("Mensagem vázia");
 		try {
 			numero = Integer.parseInt(msgNum);
 			msgNum = String.valueOf(--numero);
 			msgInc += msgNum;
 		} catch (NumberFormatException e) {
-			msgInc = "A mensagem " + msgNum + "não é um número!";
+			msgInc = "A mensagem '" + msgNum + "' não é um número!";
 		}
 		return msgInc;
 	}
-	
 
 	public void executarBroadcast() throws IOException {
 		ServerSocket servidor = new ServerSocket(this.porta);
@@ -83,8 +81,7 @@ public class Servidor {
 		while (true) {
 
 			Socket cliente = servidor.accept();
-			System.out.println("Nova conexÃ£o com o cliente " + cliente.getInetAddress().getHostAddress() + " porta "
-					+ cliente.getLocalPort() + " " + cliente.getPort());
+			System.out.println("Nova conexão com o cliente " + cliente.getInetAddress().getHostAddress() + " porta "+ cliente.getLocalPort() + " " + cliente.getPort());
 
 			PrintStream saida = new PrintStream(cliente.getOutputStream());
 			this.clientes.add(saida);
@@ -122,8 +119,9 @@ public class Servidor {
 	}
         
     public static void main(String[] args) throws IOException {
-        new Servidor(54400).executarRecebeEnvia();
+        new Servidor(54400).rodar();
     }
 
     
 }
+
