@@ -28,7 +28,7 @@ public class Servidor {
 		this.clientes = new ArrayList<PrintStream>();
 	}
 
-	public void executarRecebeEnvia() throws IOException {
+	public void rodar() throws IOException {
 		ServerSocket servidor = new ServerSocket(this.porta);
 		System.out.println("Porta " + this.porta + " aberta!");
 
@@ -126,7 +126,7 @@ public class Servidor {
 	}
         
     public static void main(String[] args) throws IOException {
-        new Servidor(54400).executarRecebeEnvia();
+        new Servidor(54400).rodar();
     }
 
     

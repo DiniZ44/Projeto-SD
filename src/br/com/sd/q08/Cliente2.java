@@ -25,7 +25,7 @@ public class Cliente2 {
 		this.porta = porta;
 	}
 
-	public void executar() throws IOException {
+	public void rodar() throws IOException {
 
 		Socket cliente = new Socket(this.host, this.porta);
 		System.out.println("O cliente "+this.nome+" se conectou ao servidor!");
@@ -63,6 +63,6 @@ public class Cliente2 {
 	}
         
         public static void main(String[] args) throws IOException {
-            new Cliente2("Cliente que Recebe", "127.0.0.2", 54400).executar();
+            new Cliente2("Cliente que Recebe", "127.0.0.2", 54400).rodar();
 	}
 }
